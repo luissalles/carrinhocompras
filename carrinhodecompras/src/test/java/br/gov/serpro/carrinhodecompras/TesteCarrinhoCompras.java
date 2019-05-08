@@ -13,5 +13,12 @@ public class TesteCarrinhoCompras {
 		c.adicionaProduto(new Produto("bermuda", 70));
 		assertEquals(220, c.total());
 	}
-	
+	@Test
+	public void escutaAdicaoDeProduto() {
+		CarrinhoCompras c = new CarrinhoCompras();
+		MockObservadorCarrinho mock = new MockObservadorCarrinho();
+		c.adicionarObservador(mock);
+		c.adicionaProduto(new Produto("tenis", 100));
+		mock.verificaRecebimentoProduto("tenis", 100);
+	}
 }
